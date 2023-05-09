@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="microcredito" transaction-type="RESOURCE_LOCAL">
+    <class>rc.so.entities.Allievi_Pregresso</class>
+    <class>rc.so.entities.StatoPartecipazione</class>
+    <class>rc.so.entities.TitoliStudio</class>
+    <class>rc.so.entities.SediFormazione</class>
+    <class>rc.so.entities.FasceDocenti</class>
+    <class>rc.so.entities.CPI</class>
+    <class>rc.so.entities.Comuni</class>
+    <class>rc.so.entities.Docenti</class>
+    <class>rc.so.entities.ProgettiFormativi</class>
+    <class>rc.so.entities.StatiPrg</class>
+    <class>rc.so.entities.Tracking</class>
+    <class>rc.so.entities.Condizione_Mercato</class>
+    <class>rc.so.entities.User</class>
+    <class>rc.so.entities.Selfiemployment_Prestiti</class>
+    <class>rc.so.entities.Allievi</class>
+    <class>rc.so.entities.Path</class>
+    <class>rc.so.entities.ComuniCoord</class>
+    <class>rc.so.entities.SoggettiAttuatori</class>
+    <class>rc.so.entities.Ateco</class>
+    <class>rc.so.entities.Ruolo</class>
+    <class>rc.so.entities.NomiProgetto</class>
+    
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="eclipselink.logging.level" value="OFF"/>
+      <property name="javax.persistence.schema-generation.database.action" value="validate"/>
+      <property name="javax.persistence.jdbc.user" value="bando"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="bando"/>
+      <!-- MID -->
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://172.27.2.66:3306/gest_mid?useSSL=false"/>      
+    </properties>
+  </persistence-unit>
+</persistence>
