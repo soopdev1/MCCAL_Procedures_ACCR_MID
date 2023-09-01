@@ -53,14 +53,14 @@ import static rc.so.engine.MainSelector.log;
  * @author raf
  */
 public class ExcelExtraction {
-
+    
     private static final SimpleDateFormat sdita = new SimpleDateFormat("dd/MM/yyyy");
     private static final SimpleDateFormat sdmysql = new SimpleDateFormat("yyyy-MM-dd");
-
+    
     public static boolean excelDocenti() {
         Entity e = new Entity();
         String path = e.getPath("estrazione_docenti");
-
+        
         try {
             File out_file = new File(path);
             Workbook workbook;
@@ -99,26 +99,26 @@ public class ExcelExtraction {
                 workbook.close();
                 out.flush();
             }
-
+            
             return true;
         } catch (Exception ex) {
             e.insertTracking(null, "BATCH excelDocenti: " + estraiEccezione(ex));
         } finally {
             e.close();
         }
-
+        
         return false;
     }
-
+    
     public static void elencoDocenti_R() {
         Entity e = new Entity();
         try {
-
+            
             List<Docenti> docenti = e.getDocenti();
-
+            
             try ( XSSFWorkbook wb = new XSSFWorkbook()) {
                 XSSFSheet sh1 = wb.createSheet();
-
+                
                 XSSFColor color = new XSSFColor(new java.awt.Color(43, 150, 150), null);
                 XSSFCellStyle cellStyleintest = wb.createCellStyle();
                 cellStyleintest.setBorderBottom(BorderStyle.THIN);
@@ -128,15 +128,15 @@ public class ExcelExtraction {
                 cellStyleintest.setFillForegroundColor(color);
                 cellStyleintest.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                 cellStyleintest.setAlignment(HorizontalAlignment.CENTER);
-
+                
                 XSSFCellStyle cellStylenorm = wb.createCellStyle();
                 cellStylenorm.setBorderBottom(BorderStyle.THIN);
                 cellStylenorm.setBorderTop(BorderStyle.THIN);
                 cellStylenorm.setBorderRight(BorderStyle.THIN);
                 cellStylenorm.setBorderLeft(BorderStyle.THIN);
-
+                
                 XSSFRow intestazione = getRow(sh1, 0);
-
+                
                 for (int ind = 0; ind < 6; ind++) {
                     XSSFCell ce1 = getCell(intestazione, ind);
                     ce1.setCellStyle(cellStyleintest);
@@ -163,12 +163,12 @@ public class ExcelExtraction {
                             break;
                     }
                 }
-
+                
                 AtomicInteger indice = new AtomicInteger(1);
-
+                
                 docenti.forEach(d1 -> {
                     XSSFRow rowcontent = getRow(sh1, indice.get());
-
+                    
                     indice.addAndGet(1);
                     for (int ind = 0; ind < 6; ind++) {
                         XSSFCell ce1 = getCell(rowcontent, ind);
@@ -211,7 +211,7 @@ public class ExcelExtraction {
             e.close();
         }
     }
-
+    
     public static void elencoAllievi_R() {
         Entity e = new Entity();
         try {
@@ -220,18 +220,17 @@ public class ExcelExtraction {
 
             List<String> statiavvio = Arrays.asList(new String[]{"S", "S1"});
             List<String> staticoncluso = Arrays.asList(new String[]{"C", "C1", "CL", "AR"});
-
+            
             List<Excel_allievi> complete = new LinkedList<>();
             List<Allievi> allievi = e.findAll(Allievi.class);
-
-            List<Allievi_Pregresso> allievi_pregresso = e.findAll(Allievi_Pregresso.class);
-            HashedMap<String, SoggettiAttuatori> soggetto_map = e.getSoggettiMap();
-
+            
+//            HashedMap<String, SoggettiAttuatori> soggetto_map = e.getSoggettiMap();
+            
             allievi.forEach(a1 -> {
                 Excel_allievi a2 = new Excel_allievi();
-
+                
                 a2.setID(String.valueOf(a1.getId()));
-
+                
                 if (a1.getProgetto() == null) {
                     a2.setOrdine(0);
                     a2.setSTATO("IN FASE DI AVVIO");
@@ -255,7 +254,7 @@ public class ExcelExtraction {
                         a2.setSTATO("RITIRATO");
                         a2.setOrdine(3);
                     }
-
+                    
                     a2.setIDPROGETTOFORMATIVO(String.valueOf(a1.getProgetto().getId()));
                     a2.setCIPPROGETTOFORMATIVO(a1.getProgetto().getCip() == null ? "-" : a1.getProgetto().getCip());
                     a2.setDATAINIZIOPERCORSOFORMATIVO(
@@ -263,14 +262,14 @@ public class ExcelExtraction {
                     a2.setDATAFINEPERCORSOFORMATIVO(
                             a1.getProgetto().getEnd() == null ? "-" : sdita.format(a1.getProgetto().getEnd()));
                 }
-
+                
                 a2.setCOGNOME(a1.getCognome().toUpperCase());
                 a2.setNOME(a1.getNome().toUpperCase());
                 a2.setCODICEFISCALE(a1.getCodicefiscale().toUpperCase());
                 a2.setDATANASCITA(sdita.format(a1.getDatanascita()));
-
+                
                 a2.setCOMUNENASCITA(a1.getComune_nascita().getNome().toUpperCase());
-
+                
                 a2.setDOMICILIOPROVINCIA(a1.getComune_domicilio().getProvincia().toUpperCase());
                 a2.setDOMICILIOCOMUNE(a1.getComune_domicilio().getNome().toUpperCase());
                 a2.setRESIDENZAPROVINCIA(a1.getComune_residenza().getProvincia().toUpperCase());
@@ -279,52 +278,21 @@ public class ExcelExtraction {
                 a2.setINDIRIZZOEMAIL(a1.getEmail().toLowerCase());
                 a2.setNUMERODITELEFONO(a1.getTelefono());
                 a2.setSOGGETTOATTUATORE(a1.getSoggetto().getRagionesociale());
+                a2.setIMPRESAESISTENTE(a1.isImpresaesistente() ? "IMPRESA ESISTENTE" : "NUOVA IMPRESA");
                 complete.add(a2);
             });
-
-            allievi_pregresso.forEach(a1 -> {
-                Excel_allievi a2 = new Excel_allievi();
-
-                a2.setID("P_" + a1.getId());
-                a2.setSTATO("FORMATO");
-                a2.setOrdine(2);
-                a2.setCOGNOME(a1.getCognome().toUpperCase());
-                a2.setNOME(a1.getNome().toUpperCase());
-                a2.setCODICEFISCALE(a1.getCodice_fiscale().toUpperCase());
-                a2.setDATANASCITA(convertDATEMYSQLTOITA(a1.getData_di_nascita()));
-                a2.setCOMUNENASCITA(a1.getComune_di_nascita().toUpperCase());
-
-                a2.setCOMUNENASCITA(a1.getComune_di_nascita().toUpperCase());
-                a2.setDOMICILIOPROVINCIA(a1.getProvincia_domicilio().toUpperCase());
-                a2.setDOMICILIOCOMUNE(a1.getComune_domicilio().toUpperCase());
-                a2.setRESIDENZAPROVINCIA(a1.getProvincia_sigla().toUpperCase());
-                a2.setRESIDENZACOMUNE(a1.getComune_di_residenza().toUpperCase());
-                a2.setCONDIZIONELAVORATIVAPRECEDENTE(a1.getEsperienza_lavorativa().toUpperCase());
-                a2.setINDIRIZZOEMAIL(a1.getEmail().toLowerCase());
-                a2.setNUMERODITELEFONO(a1.getCellulare());
-
-                SoggettiAttuatori sa = soggetto_map.get(a1.getCf_sa());
-                a2.setSOGGETTOATTUATORE(sa == null ? a1.getCf_sa() : sa.getRagionesociale());
-
-                a2.setIDPROGETTOFORMATIVO("-");
-                a2.setCIPPROGETTOFORMATIVO(a1.getId_percorso());
-                a2.setDATAINIZIOPERCORSOFORMATIVO(convertDATEMYSQLTOITA(a1.getData_inizio_fase_a()));
-                a2.setDATAFINEPERCORSOFORMATIVO(convertDATEMYSQLTOITA(a1.getData_fine_fase_b()));
-
-                complete.add(a2);
-            });
-
+            
             if (!complete.isEmpty()) {
                 String base64IN = e.getPath("TEMPLATE_ALLIEVI");
                 try ( XSSFWorkbook wb = new XSSFWorkbook(new ByteArrayInputStream(Base64.decodeBase64(base64IN)))) {
                     XSSFSheet sh1 = wb.getSheetAt(0);
                     AtomicInteger indice = new AtomicInteger(1);
-
+                    
                     Collections.sort(complete, Comparator.comparingInt(Excel_allievi::getOrdine));
-
+                    
                     complete.forEach(allievo -> {
                         XSSFRow row = getRow(sh1, indice.get());
-
+                        
                         setCell(getCell(row, 0), allievo.getID());
                         setCell(getCell(row, 1), allievo.getSTATO());
                         setCell(getCell(row, 2), allievo.getCOGNOME());
@@ -344,9 +312,10 @@ public class ExcelExtraction {
                         setCell(getCell(row, 16), allievo.getCIPPROGETTOFORMATIVO());
                         setCell(getCell(row, 17), allievo.getDATAINIZIOPERCORSOFORMATIVO());
                         setCell(getCell(row, 18), allievo.getDATAFINEPERCORSOFORMATIVO());
+                        setCell(getCell(row, 19), allievo.getIMPRESAESISTENTE());
                         indice.addAndGet(1);
                     });
-
+                    
                     for (int i = 0; i < 19; i++) {
                         sh1.autoSizeColumn(i);
                     }
@@ -357,21 +326,21 @@ public class ExcelExtraction {
                     }
                 }
             }
-
+            
         } catch (Exception ex) {
             e.insertTracking(null, "BATCH elencoAllievi: " + estraiEccezione(ex));
         } finally {
             e.close();
         }
     }
-
+    
     private static void setCell(XSSFCell cella, String valore) {
         try {
             cella.setCellValue(valore);
         } catch (Exception e) {
         }
     }
-
+    
     private static XSSFCell getCell(XSSFRow riga, int indice) {
         XSSFCell cell1;
         try {
@@ -384,7 +353,7 @@ public class ExcelExtraction {
         }
         return cell1;
     }
-
+    
     private static XSSFRow getRow(XSSFSheet foglio, int indice) {
         XSSFRow riga;
         try {
@@ -397,7 +366,7 @@ public class ExcelExtraction {
         }
         return riga;
     }
-
+    
     private static String convertDATEMYSQLTOITA(String ing) {
         try {
             return sdita.format(sdmysql.parse(ing));
@@ -405,33 +374,32 @@ public class ExcelExtraction {
         }
         return "";
     }
-
+    
     private static int writeCell(Row row, int colonna, String dato) {
         Cell cell = row.createCell(colonna);
         cell.setCellValue(dato == null ? "-" : dato);
         return colonna + 1;
     }
-
+    
     private static int writeCell(Row row, int colonna, int dato) {
         Cell cell = row.createCell(colonna);
         cell.setCellValue(dato);
         return colonna + 1;
     }
-
+    
     private static int writeCell(Row row, Date dato, CellStyle style, int colonna) {
         Cell cell = row.createCell(colonna);
         cell.setCellValue(dato);
         cell.setCellStyle(style);
         return colonna + 1;
     }
-
+    
     private static void setSizeCell(Sheet sheet, Row row) {
         Iterator<Cell> cells = row.cellIterator();// fa il resize di tutte le celle
         while (cells.hasNext()) {
             sheet.autoSizeColumn(cells.next().getColumnIndex());
         }
-
+        
     }
-
     
 }

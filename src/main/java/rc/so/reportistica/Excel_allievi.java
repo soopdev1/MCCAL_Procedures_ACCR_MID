@@ -10,180 +10,187 @@ package rc.so.reportistica;
  * @author raf
  */
 public class Excel_allievi {
-	
-	int ordine;
-	
-	String ID,STATO,COGNOME,NOME,CODICEFISCALE,	DATANASCITA,	COMUNENASCITA,	DOMICILIOPROVINCIA,	DOMICILIOCOMUNE,
-	RESIDENZAPROVINCIA,	RESIDENZACOMUNE,	CPI,	CONDIZIONELAVORATIVAPRECEDENTE,	INDIRIZZOEMAIL,	NUMERODITELEFONO,
-	SOGGETTOATTUATORE,	IDPROGETTOFORMATIVO,	CIPPROGETTOFORMATIVO,	DATAINIZIOPERCORSOFORMATIVO,	DATAFINEPERCORSOFORMATIVO;
-	
-	
-	public int getOrdine() {
-		return ordine;
-	}
 
-	public void setOrdine(int ordine) {
-		this.ordine = ordine;
-	}
+    int ordine;
 
-	public String getID() {
-		return ID;
-	}
+    String ID, STATO, COGNOME, NOME, CODICEFISCALE, DATANASCITA, COMUNENASCITA, DOMICILIOPROVINCIA, DOMICILIOCOMUNE,
+            RESIDENZAPROVINCIA, RESIDENZACOMUNE, CPI, CONDIZIONELAVORATIVAPRECEDENTE, INDIRIZZOEMAIL, NUMERODITELEFONO,
+            SOGGETTOATTUATORE, IDPROGETTOFORMATIVO, CIPPROGETTOFORMATIVO, DATAINIZIOPERCORSOFORMATIVO, DATAFINEPERCORSOFORMATIVO, IMPRESAESISTENTE;
 
-	public void setID(String iD) {
-		ID = iD;
-	}
+    public String getIMPRESAESISTENTE() {
+        return IMPRESAESISTENTE;
+    }
 
-	public String getSTATO() {
-		return STATO;
-	}
+    public void setIMPRESAESISTENTE(String IMPRESAESISTENTE) {
+        this.IMPRESAESISTENTE = IMPRESAESISTENTE;
+    }
 
-	public void setSTATO(String sTATO) {
-		STATO = sTATO;
-	}
+    public int getOrdine() {
+        return ordine;
+    }
 
-	public String getCOGNOME() {
-		return COGNOME;
-	}
+    public void setOrdine(int ordine) {
+        this.ordine = ordine;
+    }
 
-	public void setCOGNOME(String cOGNOME) {
-		COGNOME = cOGNOME;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public String getNOME() {
-		return NOME;
-	}
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setNOME(String nOME) {
-		NOME = nOME;
-	}
+    public String getSTATO() {
+        return STATO;
+    }
 
-	public String getCODICEFISCALE() {
-		return CODICEFISCALE;
-	}
+    public void setSTATO(String sTATO) {
+        STATO = sTATO;
+    }
 
-	public void setCODICEFISCALE(String cODICEFISCALE) {
-		CODICEFISCALE = cODICEFISCALE;
-	}
+    public String getCOGNOME() {
+        return COGNOME;
+    }
 
-	public String getDATANASCITA() {
-		return DATANASCITA;
-	}
+    public void setCOGNOME(String cOGNOME) {
+        COGNOME = cOGNOME;
+    }
 
-	public void setDATANASCITA(String dATANASCITA) {
-		DATANASCITA = dATANASCITA;
-	}
+    public String getNOME() {
+        return NOME;
+    }
 
-	public String getCOMUNENASCITA() {
-		return COMUNENASCITA;
-	}
+    public void setNOME(String nOME) {
+        NOME = nOME;
+    }
 
-	public void setCOMUNENASCITA(String cOMUNENASCITA) {
-		COMUNENASCITA = cOMUNENASCITA;
-	}
+    public String getCODICEFISCALE() {
+        return CODICEFISCALE;
+    }
 
-	public String getDOMICILIOPROVINCIA() {
-		return DOMICILIOPROVINCIA;
-	}
+    public void setCODICEFISCALE(String cODICEFISCALE) {
+        CODICEFISCALE = cODICEFISCALE;
+    }
 
-	public void setDOMICILIOPROVINCIA(String dOMICILIOPROVINCIA) {
-		DOMICILIOPROVINCIA = dOMICILIOPROVINCIA;
-	}
+    public String getDATANASCITA() {
+        return DATANASCITA;
+    }
 
-	public String getDOMICILIOCOMUNE() {
-		return DOMICILIOCOMUNE;
-	}
+    public void setDATANASCITA(String dATANASCITA) {
+        DATANASCITA = dATANASCITA;
+    }
 
-	public void setDOMICILIOCOMUNE(String dOMICILIOCOMUNE) {
-		DOMICILIOCOMUNE = dOMICILIOCOMUNE;
-	}
+    public String getCOMUNENASCITA() {
+        return COMUNENASCITA;
+    }
 
-	public String getRESIDENZAPROVINCIA() {
-		return RESIDENZAPROVINCIA;
-	}
+    public void setCOMUNENASCITA(String cOMUNENASCITA) {
+        COMUNENASCITA = cOMUNENASCITA;
+    }
 
-	public void setRESIDENZAPROVINCIA(String rESIDENZAPROVINCIA) {
-		RESIDENZAPROVINCIA = rESIDENZAPROVINCIA;
-	}
+    public String getDOMICILIOPROVINCIA() {
+        return DOMICILIOPROVINCIA;
+    }
 
-	public String getRESIDENZACOMUNE() {
-		return RESIDENZACOMUNE;
-	}
+    public void setDOMICILIOPROVINCIA(String dOMICILIOPROVINCIA) {
+        DOMICILIOPROVINCIA = dOMICILIOPROVINCIA;
+    }
 
-	public void setRESIDENZACOMUNE(String rESIDENZACOMUNE) {
-		RESIDENZACOMUNE = rESIDENZACOMUNE;
-	}
+    public String getDOMICILIOCOMUNE() {
+        return DOMICILIOCOMUNE;
+    }
 
-	public String getCPI() {
-		return CPI;
-	}
+    public void setDOMICILIOCOMUNE(String dOMICILIOCOMUNE) {
+        DOMICILIOCOMUNE = dOMICILIOCOMUNE;
+    }
 
-	public void setCPI(String cPI) {
-		CPI = cPI;
-	}
+    public String getRESIDENZAPROVINCIA() {
+        return RESIDENZAPROVINCIA;
+    }
 
-	public String getCONDIZIONELAVORATIVAPRECEDENTE() {
-		return CONDIZIONELAVORATIVAPRECEDENTE;
-	}
+    public void setRESIDENZAPROVINCIA(String rESIDENZAPROVINCIA) {
+        RESIDENZAPROVINCIA = rESIDENZAPROVINCIA;
+    }
 
-	public void setCONDIZIONELAVORATIVAPRECEDENTE(String cONDIZIONELAVORATIVAPRECEDENTE) {
-		CONDIZIONELAVORATIVAPRECEDENTE = cONDIZIONELAVORATIVAPRECEDENTE;
-	}
+    public String getRESIDENZACOMUNE() {
+        return RESIDENZACOMUNE;
+    }
 
-	public String getINDIRIZZOEMAIL() {
-		return INDIRIZZOEMAIL;
-	}
+    public void setRESIDENZACOMUNE(String rESIDENZACOMUNE) {
+        RESIDENZACOMUNE = rESIDENZACOMUNE;
+    }
 
-	public void setINDIRIZZOEMAIL(String iNDIRIZZOEMAIL) {
-		INDIRIZZOEMAIL = iNDIRIZZOEMAIL;
-	}
+    public String getCPI() {
+        return CPI;
+    }
 
-	public String getNUMERODITELEFONO() {
-		return NUMERODITELEFONO;
-	}
+    public void setCPI(String cPI) {
+        CPI = cPI;
+    }
 
-	public void setNUMERODITELEFONO(String nUMERODITELEFONO) {
-		NUMERODITELEFONO = nUMERODITELEFONO;
-	}
+    public String getCONDIZIONELAVORATIVAPRECEDENTE() {
+        return CONDIZIONELAVORATIVAPRECEDENTE;
+    }
 
-	public String getSOGGETTOATTUATORE() {
-		return SOGGETTOATTUATORE;
-	}
+    public void setCONDIZIONELAVORATIVAPRECEDENTE(String cONDIZIONELAVORATIVAPRECEDENTE) {
+        CONDIZIONELAVORATIVAPRECEDENTE = cONDIZIONELAVORATIVAPRECEDENTE;
+    }
 
-	public void setSOGGETTOATTUATORE(String sOGGETTOATTUATORE) {
-		SOGGETTOATTUATORE = sOGGETTOATTUATORE;
-	}
+    public String getINDIRIZZOEMAIL() {
+        return INDIRIZZOEMAIL;
+    }
 
-	public String getIDPROGETTOFORMATIVO() {
-		return IDPROGETTOFORMATIVO;
-	}
+    public void setINDIRIZZOEMAIL(String iNDIRIZZOEMAIL) {
+        INDIRIZZOEMAIL = iNDIRIZZOEMAIL;
+    }
 
-	public void setIDPROGETTOFORMATIVO(String iDPROGETTOFORMATIVO) {
-		IDPROGETTOFORMATIVO = iDPROGETTOFORMATIVO;
-	}
+    public String getNUMERODITELEFONO() {
+        return NUMERODITELEFONO;
+    }
 
-	public String getCIPPROGETTOFORMATIVO() {
-		return CIPPROGETTOFORMATIVO;
-	}
+    public void setNUMERODITELEFONO(String nUMERODITELEFONO) {
+        NUMERODITELEFONO = nUMERODITELEFONO;
+    }
 
-	public void setCIPPROGETTOFORMATIVO(String cIPPROGETTOFORMATIVO) {
-		CIPPROGETTOFORMATIVO = cIPPROGETTOFORMATIVO;
-	}
+    public String getSOGGETTOATTUATORE() {
+        return SOGGETTOATTUATORE;
+    }
 
-	public String getDATAINIZIOPERCORSOFORMATIVO() {
-		return DATAINIZIOPERCORSOFORMATIVO;
-	}
+    public void setSOGGETTOATTUATORE(String sOGGETTOATTUATORE) {
+        SOGGETTOATTUATORE = sOGGETTOATTUATORE;
+    }
 
-	public void setDATAINIZIOPERCORSOFORMATIVO(String dATAINIZIOPERCORSOFORMATIVO) {
-		DATAINIZIOPERCORSOFORMATIVO = dATAINIZIOPERCORSOFORMATIVO;
-	}
+    public String getIDPROGETTOFORMATIVO() {
+        return IDPROGETTOFORMATIVO;
+    }
 
-	public String getDATAFINEPERCORSOFORMATIVO() {
-		return DATAFINEPERCORSOFORMATIVO;
-	}
+    public void setIDPROGETTOFORMATIVO(String iDPROGETTOFORMATIVO) {
+        IDPROGETTOFORMATIVO = iDPROGETTOFORMATIVO;
+    }
 
-	public void setDATAFINEPERCORSOFORMATIVO(String dATAFINEPERCORSOFORMATIVO) {
-		DATAFINEPERCORSOFORMATIVO = dATAFINEPERCORSOFORMATIVO;
-	}
+    public String getCIPPROGETTOFORMATIVO() {
+        return CIPPROGETTOFORMATIVO;
+    }
+
+    public void setCIPPROGETTOFORMATIVO(String cIPPROGETTOFORMATIVO) {
+        CIPPROGETTOFORMATIVO = cIPPROGETTOFORMATIVO;
+    }
+
+    public String getDATAINIZIOPERCORSOFORMATIVO() {
+        return DATAINIZIOPERCORSOFORMATIVO;
+    }
+
+    public void setDATAINIZIOPERCORSOFORMATIVO(String dATAINIZIOPERCORSOFORMATIVO) {
+        DATAINIZIOPERCORSOFORMATIVO = dATAINIZIOPERCORSOFORMATIVO;
+    }
+
+    public String getDATAFINEPERCORSOFORMATIVO() {
+        return DATAFINEPERCORSOFORMATIVO;
+    }
+
+    public void setDATAFINEPERCORSOFORMATIVO(String dATAFINEPERCORSOFORMATIVO) {
+        DATAFINEPERCORSOFORMATIVO = dATAFINEPERCORSOFORMATIVO;
+    }
 
 }
